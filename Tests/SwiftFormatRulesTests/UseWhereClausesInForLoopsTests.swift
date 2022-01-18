@@ -19,6 +19,14 @@ final class UseWhereClausesInForLoopsTests: LintOrFormatRuleTestCase {
              }
 
              for i in [0, 1, 2, 3] {
+               if i.isMultiple(of: 2) {
+                 print(true)
+               } else {
+                 print(false)
+               }
+             }
+
+             for i in [0, 1, 2, 3] {
                if let x = (2 as Int?) {
                  print(i)
                }
@@ -34,6 +42,14 @@ final class UseWhereClausesInForLoopsTests: LintOrFormatRuleTestCase {
       expected: """
                 for i in [0, 1, 2, 3] where i > 30 {
                     print(i)
+                }
+
+                for i in [0, 1, 2, 3] {
+                  if i > 30 {
+                    print(true)
+                  } else {
+                    print(false)
+                  }
                 }
 
                 for i in [0, 1, 2, 3] {
